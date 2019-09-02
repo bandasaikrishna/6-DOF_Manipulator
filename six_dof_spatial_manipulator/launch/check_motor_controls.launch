@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<launch>
+    
+  <rosparam file="$(find six_dof_spatial_manipulator)/config/controllers.yaml" command="load"/>
+   
+  <arg name="model" default="$(find six_dof_spatial_manipulator)/urdf/six_dof_spatial_manipulator.urdf.xacro"/>
+  <arg name="gui" default="true" />
+  
+  <param name="robot_description" command="$(find xacro)/xacro.py $(arg model)" />
+  <param name="use_gui" value="$(arg gui)"/>
+
+  <node name="six_robot_hardware_interface" pkg="six_dof_spatial_manipulator" type="six_robot_hardware_interface" output="screen"/>
+
+  <node name="robot_state_publisher" pkg="robot_state_publisher" type="state_publisher" >
+  </node>
+  
+  <node name="rviz" pkg="rviz" type="rviz"/>
+    
+  <node name="controller_spawner" pkg="controller_manager" type="spawner" respawn="false" output="screen"
+        args="
+        	/six_dof_spatial_manipulator/joints_update
+            /six_dof_spatial_manipulator/joint1
+            /six_dof_spatial_manipulator/joint2
+            /six_dof_spatial_manipulator/joint3
+            /six_dof_spatial_manipulator/joint4
+            /six_dof_spatial_manipulator/joint5
+            /six_dof_spatial_manipulator/joint6
+        "/> 
+</launch>
