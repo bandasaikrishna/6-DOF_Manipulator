@@ -1,0 +1,34 @@
+six_dof_spatial_manipulator:
+ joint_state_controller:
+  type: joint_state_controller/JointStateController
+  publish_rate: 20
+ arm_joint_controller:
+  type: "position_controllers/JointTrajectoryController"
+  joints:
+   - joint1
+   - joint2
+   - joint3
+   - joint4
+   - joint5
+   - joint6
+  gains:
+   joint1: {p: 1000.0, i: 0.0, d: 0.1}
+   joint2: {p: 1000.0, i: 0.0, d: 0.1}
+   joint3: {p: 1000.0, i: 0.0, d: 0.1}
+   joint4: {p: 1000.0, i: 0.0, d: 0.1}
+   joint5: {p: 1000.0, i: 0.0, d: 0.1}
+   joint6: {p: 1000.0, i: 0.0, d: 0.1}
+  constraints:
+   joint1:
+    goal: 1
+   joint2:
+    goal: 1
+   joint3:
+    goal: 1
+   joint4:
+    goal: 1
+   joint5:
+    goal: 1
+   joint6:
+    goal: 1
+  
